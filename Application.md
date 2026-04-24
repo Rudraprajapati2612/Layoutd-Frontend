@@ -56,63 +56,28 @@ Plus a published GitHub Action (`layoutd/action-check`) so any Anchor repo can d
 
 ### Proof of Work
 
-**1. HydraMarket — Decentralized Prediction Market Protocol on Solana**
+ 
+Five shipped projects demonstrate the systems depth that `layoutd` requires:
+ 
+### HydraMarket — On-Chain Prediction Market (Anchor/Rust)
 [github.com/Rudraprajapati2612/HydraMarket-Contract](https://github.com/Rudraprajapati2612/HydraMarket-Contract)
-
-A fully on-chain prediction market protocol built with Anchor/Rust. Three cross-program Anchor programs: Market Registry (lifecycle management), Escrow Vault (YES/NO token minting, SPL settlement), and Resolution Adapter (Pyth oracle + bonded dispute mechanism). 60+ test cases covering PDA derivation, CPI authorization, oracle proposals, and payout claims. Deployed to Solana devnet. This project required deep understanding of Anchor account layout, CPI, and the exact class of struct-level bugs that layoutd targets.
-
----
-
-**2. HydraMarket — Hybrid Prediction Market Platform (Full-Stack Monorepo)**
+Three cross-program Anchor contracts (Market Registry, Escrow Vault, Resolution Adapter), 60+ test cases, deployed to devnet. Direct hands-on experience with Anchor account layout, CPI authorization, and the exact class of struct-level bugs `layoutd` targets.
+ 
+### HydraMarket — Full-Stack Hybrid DEX (Monorepo)
 [github.com/Rudraprajapati2612/HydraMarket-Solana-Predection-Market-](https://github.com/Rudraprajapati2612/HydraMarket-Solana-Predection-Market-)
-
-A production-grade hybrid prediction market platform on Solana — half centralized for speed, half decentralized for trustless settlement. Seven services across a Turborepo/Bun monorepo (88% TypeScript, 10.6% Rust):
-
-- **API Gateway** (Bun + Elysia): JWT auth, balance management, order placement via gRPC to the Rust matching engine
-- **Matching Engine** (Rust + Tokio): In-memory order book with price-time priority, complementary YES/NO match detection, Redis queue dispatch for on-chain settlement
-- **Settlement Worker** (Rust): Pops `mint:queue`, transfers USDC to the Anchor escrow vault, mints YES/NO SPL token pairs on-chain, syncs PostgreSQL positions
-- **Withdrawal Worker** (Rust): Polls withdrawal table, executes USDC SPL transfers directly to user wallets, confirms on-chain
-- **Deposit Indexer** (TypeScript): WebSocket hot-wallet monitor, parses memo fields, credits user balances in real time
-- **Resolution Adapter** (TypeScript + node-cron): Hourly cron fetching Pyth (crypto) and RapidAPI (sports/cricket) oracle data, writes resolved outcomes to the on-chain Resolution Adapter program
-- **React Frontend**: Wallet integration, live order book, trade execution, position tracking, payout claim UI
-
-On-chain programs (Market Registry, Escrow Vault, Resolution Adapter) live in the companion [HydraMarket-Contract](https://github.com/Rudraprajapati2612/HydraMarket-Contract) repo. Building this required the exact systems-level depth that layoutd targets: Anchor account struct layout, CPI authorization chains, SPL token mechanics, and oracle-driven state transitions across a multi-language Rust + TypeScript production stack.
-
----
-
-**3. Ferrum — HTTP Framework built from scratch in Rust**
+Seven-service Turborepo/Bun monorepo — Rust matching engine (Tokio, gRPC), Rust settlement + withdrawal workers, TypeScript deposit indexer, Pyth + RapidAPI oracle resolution, React frontend. End-to-end production Rust + TypeScript DeFi stack.
+ 
+### Ferrum — HTTP Framework in Rust (Zero Dependencies)
 [github.com/Rudraprajapati2612/Ferrum](https://github.com/Rudraprajapati2612/Ferrum)
-
-A zero-dependency HTTP/1.1 web framework written entirely in Rust — raw TCP handling, manual byte parser, radix trie router, middleware chain, async I/O via Tokio. Benchmarks at 257,000–294,000 RPS. Built phase-by-phase as a deep systems learning exercise. Demonstrates the same low-level Rust discipline that layoutd's IDL parser and byte-diff engine requires.
-
----
-
-**4. Central Limit Order Book in Rust**
+Raw TCP handling, manual byte parser, radix trie router, middleware chain, async Tokio. Benchmarks at 257k–294k RPS. The same low-level Rust discipline `layoutd`'s IDL parser and byte-diff engine requires.
+ 
+### Central Limit Order Book in Rust
 [github.com/Rudraprajapati2612/Central-limit-OrderBook-rust](https://github.com/Rudraprajapati2612/Central-limit-OrderBook-rust)
-
-A CLOB implementation in Rust — price-time priority matching engine, order management, bid/ask book. Core DeFi infrastructure built natively in Rust.
-
----
-
-**5. AMM on Solana**
+Price-time priority matching engine, order management, bid/ask book — core DeFi infrastructure in native Rust.
+ 
+### AMM on Solana
 [github.com/Rudraprajapati2612/amm-Solana](https://github.com/Rudraprajapati2612/amm-Solana)
-
-Automated Market Maker implemented as an Anchor program on Solana — liquidity pool management, swap execution, LP token minting. Foundational DeFi primitive in the Solana ecosystem.
-
----
-
-### Loom Video Pitch
-
-[https://www.loom.com/share/c8ef0c3c2fcf4cad8feba1036f40c254](https://www.loom.com/share/c8ef0c3c2fcf4cad8feba1036f40c254)
-
-### Personal X Profile
-
-[x.com/0xRudraSol](https://x.com/0xRudraSol)
-
-### Personal GitHub Profile
-
-[github.com/Rudraprajapati2612](https://github.com/Rudraprajapati2612)
-
+Anchor-based AMM — liquidity pool management, swap execution, LP token minting. Foundational DeFi primitive on Solana.
 ---
 
 ## 3. Milestones
