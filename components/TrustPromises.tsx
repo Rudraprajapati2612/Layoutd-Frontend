@@ -75,7 +75,7 @@ export function TrustPromises() {
               className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-ink-muted)]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              Why it&rsquo;s trustworthy
+              Why it’s trustworthy
             </motion.p>
             <motion.h2
               id="trust-heading"
@@ -99,9 +99,9 @@ export function TrustPromises() {
             transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
             className="self-end text-base leading-relaxed text-[var(--color-ink-secondary)]"
           >
-            Trust in a security tool isn&rsquo;t built from copy — it&rsquo;s built from constraints.
+            Trust in a security tool isn’t built from copy — it’s built from constraints.
             layoutd earns trust by refusing to operate outside provable bounds, not by
-            asserting that it&rsquo;s trustworthy.
+            asserting that it’s trustworthy.
           </motion.p>
         </div>
 

@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("ci-setup");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { Callout } from "@/components/docs/Callout";
@@ -34,7 +38,7 @@ export default function CiSetupPage() {
 
       <H2>PR annotations</H2>
       <P>
-        The Action consumes <C>check</C>&apos;s <Strong>SARIF 2.1.0</Strong> output,
+        The Action consumes <C>check</C>’s <Strong>SARIF 2.1.0</Strong> output,
         and GitHub renders each finding as an inline annotation on the changed
         lines. Reviewers see the field, the verdict, and the reason directly in the
         pull request.
@@ -51,7 +55,7 @@ export default function CiSetupPage() {
         </LI>
         <LI>
           Only the named change passes; any other danger still fails. The
-          acknowledgement is committed alongside the change, so it&apos;s reviewable
+          acknowledgement is committed alongside the change, so it’s reviewable
           and permanent.
         </LI>
       </UL>

@@ -6,7 +6,7 @@ import { Check, Copy, ExternalLink } from "lucide-react";
 import { Wordmark } from "./Wordmark";
 
 const INSTALL_CMD = "cargo install layoutd";
-const GITHUB_URL = "https://github.com/Rudraprajapati2612";
+const GITHUB_URL = "https://github.com/Rudraprajapati2612/layoutd-cli";
 const CRATES_URL = "https://crates.io/crates/layoutd";
 
 export function CTAFooter() {

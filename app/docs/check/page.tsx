@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("check");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { Callout } from "@/components/docs/Callout";
@@ -38,7 +42,7 @@ export default function CheckPage() {
 
       <H2>Acknowledging deliberate danger</H2>
       <P>
-        Sometimes a dangerous change is intentional. The <C>--ack &lt;file&gt;</C>{" "}
+        Sometimes a dangerous change is intentional. The <C>{"--ack <file>"}</C>{" "}
         flag points at an acknowledgement file that names the exact change being
         accepted. Only the named danger passes — any other danger still fails the
         build.

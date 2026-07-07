@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("diff");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { Verdict } from "@/components/docs/Verdict";
@@ -10,7 +14,7 @@ export default function DiffPage() {
       <H2>Purpose</H2>
       <P>
         <C>layoutd diff</C> answers one question:{" "}
-        <Strong>what changed, and what&apos;s risky?</Strong> It matches fields
+        <Strong>what changed, and what’s risky?</Strong> It matches fields
         between the two account versions, classifies each change, and prints a
         table you can read at a glance. It does not modify files or fail your
         build — for the CI gate, use{" "}
@@ -39,7 +43,7 @@ export default function DiffPage() {
         </LI>
         <LI>
           <Verdict kind="review" /> — probably safe, but correctness depends on
-          context the tool can&apos;t see.
+          context the tool can’t see.
         </LI>
         <LI>
           <Verdict kind="danger" /> — no provable path; existing accounts would be
@@ -53,7 +57,7 @@ export default function DiffPage() {
       </P>
 
       <Callout type="warning" title="Verify against your binary">
-        The output above reproduces the on-screen example and follows the spec&apos;s
+        The output above reproduces the on-screen example and follows the spec’s
         classifier rules. Your installed binary is the ground truth — re-run it on
         your own account versions to confirm the exact verdicts.
       </Callout>

@@ -132,3 +132,16 @@ export function lookupByPath(pathname: string) {
     next: idx < DOC_ORDER.length - 1 ? DOC_ORDER[idx + 1] : null,
   };
 }
+
+/** Per-page <title>/<meta description>, generated from the nav data. */
+export function metadataFor(slug: string): {
+  title: string;
+  description: string;
+} | null {
+  const entry = DOC_ORDER.find(({ item }) => item.slug === slug);
+  if (!entry) return null;
+  return {
+    title: `${entry.item.title} — layoutd`,
+    description: entry.item.summary,
+  };
+}

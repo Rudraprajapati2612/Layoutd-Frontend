@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("borsh-vs-zero-copy");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { Callout } from "@/components/docs/Callout";
 
@@ -29,8 +33,8 @@ export default function BorshVsZeroCopyPage() {
         <C>#[account(zero_copy)]</C> types use <C>repr(C)</C> with a{" "}
         <Strong>fixed layout</Strong>: real offsets, alignment requirements, and
         padding bytes. This is where offset math and alignment hazards live, and
-        where audit findings concentrate. layoutd&apos;s zero-copy engine replicates
-        the compiler&apos;s layout rules exactly to compute correct offsets.
+        where audit findings concentrate. layoutd’s zero-copy engine replicates
+        the compiler’s layout rules exactly to compute correct offsets.
       </P>
       <UL>
         <LI>Order controls offsets, padding, and total size.</LI>

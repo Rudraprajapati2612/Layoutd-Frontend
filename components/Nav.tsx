@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Copy, ExternalLink, Menu, X } from "lucide-react";
 import { Wordmark } from "./Wordmark";
 
 const INSTALL_CMD = "cargo install layoutd";
-const GITHUB_URL = "https://github.com/Rudraprajapati2612";
+const GITHUB_URL = "https://github.com/Rudraprajapati2612/layoutd-cli";
 const CRATES_URL = "https://crates.io/crates/layoutd";
 
 export function Nav() {
@@ -28,6 +28,20 @@ export function Nav() {
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, []);
+
+  /* Escape closes the mobile menu and returns focus to the hamburger */
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        hamburgerRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   const handleCopy = useCallback(async () => {
     try {
@@ -123,6 +137,7 @@ export function Nav() {
 
               {/* Mobile hamburger */}
               <button
+                ref={hamburgerRef}
                 type="button"
                 aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={menuOpen}

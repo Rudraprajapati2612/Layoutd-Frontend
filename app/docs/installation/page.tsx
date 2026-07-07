@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("installation");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { Callout } from "@/components/docs/Callout";
@@ -9,10 +13,10 @@ export default function InstallationPage() {
       <UL>
         <LI>
           A <Strong>Rust toolchain</Strong> (stable). Install via{" "}
-          <A href="https://rustup.rs">rustup</A> if you don&apos;t have it.
+          <A href="https://rustup.rs">rustup</A> if you don’t have it.
         </LI>
         <LI>
-          That&apos;s it — layoutd is a single static binary with no runtime, no
+          That’s it — layoutd is a single static binary with no runtime, no
           network calls, and no on-chain dependency.
         </LI>
       </UL>

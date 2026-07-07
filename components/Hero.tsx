@@ -65,7 +65,7 @@ export function Hero() {
         >
           Change an account.{" "}
           <span className="text-[var(--color-accent)]">
-            Don&apos;t corrupt
+            Don’t corrupt
           </span>{" "}
           the chain.
         </motion.h1>

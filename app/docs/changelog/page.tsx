@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("changelog");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { Callout } from "@/components/docs/Callout";
 
@@ -40,7 +44,7 @@ export default function ChangelogPage() {
       <H2>Follow development</H2>
       <P>
         Source, issues, and releases live on{" "}
-        <A href="https://github.com/Rudraprajapati2612">GitHub</A>. The published
+        <A href="https://github.com/Rudraprajapati2612/layoutd-cli">GitHub</A>. The published
         crate is on <A href="https://crates.io/crates/layoutd">crates.io</A>.
       </P>
     </>

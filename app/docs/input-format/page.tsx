@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("input-format");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { Callout } from "@/components/docs/Callout";
@@ -8,9 +12,9 @@ export default function InputFormatPage() {
     <>
       <H2>What layoutd reads</H2>
       <P>
-        layoutd&apos;s primary input is the <Strong>Anchor IDL JSON</Strong> — the
+        layoutd’s primary input is the <Strong>Anchor IDL JSON</Strong> — the
         same IDL your program already emits. You provide two versions of it and
-        select which account to compare with <C>--account &lt;Name&gt;</C>. For
+        select which account to compare with <C>{"--account <Name>"}</C>. For
         zero-copy structs where the IDL is insufficient, the Rust source can be
         used as a fallback.
       </P>
@@ -19,11 +23,11 @@ export default function InputFormatPage() {
           <Strong>Primary:</Strong> Anchor IDL JSON (the common path).
         </LI>
         <LI>
-          <Strong>Fallback:</Strong> the account&apos;s Rust source, for zero-copy
+          <Strong>Fallback:</Strong> the account’s Rust source, for zero-copy
           layouts.
         </LI>
         <LI>
-          <Strong>Optional:</Strong> a hint file for facts the tool can&apos;t
+          <Strong>Optional:</Strong> a hint file for facts the tool can’t
           infer, such as confirmed renames.
         </LI>
       </UL>

@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("gen");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { Callout } from "@/components/docs/Callout";
@@ -9,9 +13,9 @@ export default function GenPage() {
       <H2>Purpose</H2>
       <P>
         <C>layoutd gen</C> writes the migration. It produces a{" "}
-        <C>Migration&lt;Old, New&gt;</C> implementation that carries every safe
+        <C>{"Migration<Old, New>"}</C> implementation that carries every safe
         field across unchanged and annotates every dangerous decision so you
-        can&apos;t ship one by accident.
+        can’t ship one by accident.
       </P>
 
       <H2>Invocation</H2>
@@ -30,7 +34,7 @@ export default function GenPage() {
         <LI>
           Each dangerous field becomes a commented{" "}
           <C>{`// DANGER: …`}</C> line explaining the consequence, paired with a{" "}
-          <C>todo!(&quot;supply value&quot;)</C> placeholder.
+          <C>{'todo!("supply value")'}</C> placeholder.
         </LI>
         <LI>
           The scaffold does not compile until you resolve every <C>todo!()</C> —
@@ -48,7 +52,7 @@ export default function GenPage() {
         analysed, so a later <C>check</C> can confirm the migration still matches
         the inputs it was generated from. For variable-size accounts, the scaffold
         includes the <Strong>realloc</Strong> and rent-adjustment steps needed when
-        the new layout changes the account&apos;s size.
+        the new layout changes the account’s size.
       </P>
 
       <Callout type="warning" title="Verify against your binary">
@@ -58,7 +62,7 @@ export default function GenPage() {
       </Callout>
 
       <P>
-        Once you&apos;ve resolved the <C>todo!()</C> lines, acknowledge the
+        Once you’ve resolved the <C>todo!()</C> lines, acknowledge the
         deliberate danger and let{" "}
         <A href="/docs/check">
           <C>layoutd check</C>

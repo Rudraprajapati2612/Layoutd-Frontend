@@ -36,6 +36,10 @@ function highlightLine(line: string, lang: Lang): ReactNode {
 
 const VERDICT_RE =
   /(DANGER|REVIEW|SAFE|FAIL|PASS|WARNING|\b\d+ danger\b|\b\d+ review\b|\b\d+ safe\b)/g;
+/* Global regexes keep lastIndex between .test() calls, which silently skips
+ * matches — always test split parts with a fresh anchored, non-global regex. */
+const VERDICT_TEST =
+  /^(DANGER|REVIEW|SAFE|FAIL|PASS|WARNING|\d+ danger|\d+ review|\d+ safe)$/;
 
 function verdictColor(tok: string): string {
   if (/danger/i.test(tok)) return danger;
@@ -51,7 +55,7 @@ function colorTokens(line: string, base: string): ReactNode {
   if (!line) return " ";
   const parts = line.split(VERDICT_RE);
   return parts.map((p, i) =>
-    VERDICT_RE.test(p) ? (
+    VERDICT_TEST.test(p) ? (
       <span key={i} style={{ color: verdictColor(p), fontWeight: 600 }}>
         {p}
       </span>
@@ -66,9 +70,10 @@ function colorTokens(line: string, base: string): ReactNode {
 function highlightBash(line: string): ReactNode {
   // command name (first word) in ink, flags in violet, rest secondary
   const flagRe = /(--?[A-Za-z][\w-]*)/g;
+  const flagTest = /^--?[A-Za-z][\w-]*$/;
   const parts = line.split(flagRe);
   return parts.map((p, i) =>
-    flagRe.test(p) ? (
+    flagTest.test(p) ? (
       <span key={i} style={{ color: violet }}>
         {p}
       </span>
@@ -83,9 +88,10 @@ function highlightBash(line: string): ReactNode {
 function highlightRust(line: string): ReactNode {
   const kwRe =
     /(\bpub\b|\bfn\b|\bimpl\b|\bstruct\b|\blet\b|\bmatch\b|\bself\b|\btodo!\b|->)/g;
+  const kwTest = /^(pub|fn|impl|struct|let|match|self|todo!|->)$/;
   const parts = line.split(kwRe);
   return parts.map((p, i) =>
-    kwRe.test(p) ? (
+    kwTest.test(p) ? (
       <span key={i} style={{ color: review }}>
         {p}
       </span>

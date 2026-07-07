@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
+import { Pause, Play } from "lucide-react";
 
 type Seg = { t: string; c: string };
 type OutputLine = Seg[] | null;
@@ -338,10 +339,23 @@ export function LiveTerminal() {
     }
   }, [isInView, started, shouldReduceMotion]);
 
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
   function handleTabClick(idx: number) {
     setAutoplay(false);
     startTab(idx);
     setStarted(true);
+  }
+
+  function handleTabKeyDown(e: React.KeyboardEvent, idx: number) {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    const next =
+      e.key === "ArrowRight"
+        ? (idx + 1) % TABS.length
+        : (idx - 1 + TABS.length) % TABS.length;
+    handleTabClick(next);
+    tabRefs.current[next]?.focus();
   }
 
   function togglePlay() {
@@ -414,7 +428,12 @@ export function LiveTerminal() {
                 {TABS.map((t, i) => (
                   <button
                     key={t.id}
+                    ref={(el) => {
+                      tabRefs.current[i] = el;
+                    }}
                     onClick={() => handleTabClick(i)}
+                    onKeyDown={(e) => handleTabKeyDown(e, i)}
+                    tabIndex={activeTab === i ? 0 : -1}
                     className={[
                       "px-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-[11px] font-medium rounded-t-md transition-colors duration-100 border border-b-0 border-transparent flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]",
                       activeTab === i
@@ -439,7 +458,11 @@ export function LiveTerminal() {
                   style={{ fontFamily: "var(--font-mono)" }}
                   aria-label={autoplay ? "Pause autoplay" : "Resume autoplay"}
                 >
-                  {autoplay ? "⏸" : "▶"}
+                  {autoplay ? (
+                    <Pause size={11} aria-hidden="true" />
+                  ) : (
+                    <Play size={11} aria-hidden="true" />
+                  )}
                   <span className="hidden sm:inline">{autoplay ? "pause" : "play"}</span>
                 </button>
               </div>

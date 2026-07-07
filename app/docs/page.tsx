@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { Callout } from "@/components/docs/Callout";
 
@@ -21,7 +25,7 @@ export default function IntroductionPage() {
         layout. The new code expects the new layout, so reading old bytes through
         the new struct silently corrupts data — shifted offsets, misread fields,
         and in the worst case lost funds. The dangerous part is never your intent;
-        it&apos;s the byte-level consequence of a change that humans routinely get
+        it’s the byte-level consequence of a change that humans routinely get
         wrong, which is exactly what an audit catches and CI does not.
       </P>
 
@@ -34,9 +38,9 @@ export default function IntroductionPage() {
       </P>
       <UL>
         <LI>
-          <Strong>Zero false-safe verdicts.</Strong> The tool may say &ldquo;I
-          can&apos;t prove this, review it&rdquo; as often as needed, but never
-          calls something safe that isn&apos;t.
+          <Strong>Zero false-safe verdicts.</Strong> The tool may say “I
+          can’t prove this, review it” as often as needed, but never
+          calls something safe that isn’t.
         </LI>
         <LI>
           <Strong>Deterministic.</Strong> The same two inputs always produce
@@ -50,7 +54,7 @@ export default function IntroductionPage() {
 
       <Callout type="note" title="The principle">
         layoutd never refuses to help — it refuses to let danger be silent. A
-        DANGER verdict doesn&apos;t disappear; it becomes a permanent, audited
+        DANGER verdict doesn’t disappear; it becomes a permanent, audited
         decision in your version history.
       </Callout>
 

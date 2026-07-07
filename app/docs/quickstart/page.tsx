@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("quickstart");
+
 import { H2, P, UL, LI, C, A, Strong } from "@/components/docs/Prose";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { Callout } from "@/components/docs/Callout";
@@ -15,7 +19,7 @@ export default function QuickstartPage() {
       </P>
       <UL>
         <LI>
-          <Strong>Step 1.</Strong> Export the account&apos;s IDL for each version
+          <Strong>Step 1.</Strong> Export the account’s IDL for each version
           to <C>v1.json</C> and <C>v2.json</C> (see{" "}
           <A href="/docs/input-format">IDL / JSON Input</A>).
         </LI>
@@ -35,7 +39,7 @@ export default function QuickstartPage() {
       <P>
         The interactive terminal below runs the real <C>UserState</C> example —
         a <C>bool</C> field inserted in the middle of the struct. Switch between
-        the <C>diff</C>, <C>check</C>, and <C>gen</C> tabs to see each command&apos;s
+        the <C>diff</C>, <C>check</C>, and <C>gen</C> tabs to see each command’s
         output for the same change.
       </P>
 

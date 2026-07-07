@@ -472,7 +472,7 @@ export function Problem() {
               className="text-[11.5px] bg-[rgba(0,0,0,0.04)] border border-[var(--color-border-subtle)] px-1.5 py-0.5 rounded"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              Migration&lt;From,&nbsp;To&gt;
+              {"Migration<From,\u00A0To>"}
             </code>{" "}
             runtime gate. The gate exists. The layer that writes the migration and
             proves it safe did not.{" "}

@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { SidebarNav } from "./Sidebar";
 import { TableOfContents } from "./TableOfContents";
@@ -13,7 +13,8 @@ export function DocsShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const entry = lookupByPath(pathname);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const reduce = useReducedMotion();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   // Close drawer on route change and on desktop resize.
   useEffect(() => setDrawerOpen(false), [pathname]);
@@ -24,6 +25,20 @@ export function DocsShell({ children }: { children: ReactNode }) {
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, []);
+
+  // Escape closes the drawer; focus moves in on open, back to the trigger on close.
+  useEffect(() => {
+    if (!drawerOpen) return;
+    closeButtonRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setDrawerOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [drawerOpen]);
 
   // Lock body scroll while the drawer is open.
   useEffect(() => {
@@ -38,6 +53,7 @@ export function DocsShell({ children }: { children: ReactNode }) {
       {/* Mobile sub-bar with the drawer trigger + current page label */}
       <div className="sticky top-[56px] z-30 flex items-center gap-3 border-b border-[var(--color-border)] bg-[rgba(245,242,236,0.92)] px-4 py-2.5 backdrop-blur-[12px] lg:hidden">
         <button
+          ref={menuButtonRef}
           type="button"
           onClick={() => setDrawerOpen(true)}
           aria-label="Open docs navigation"
@@ -72,9 +88,9 @@ export function DocsShell({ children }: { children: ReactNode }) {
             />
             <motion.aside
               key="drawer"
-              initial={{ x: reduce ? 0 : "-100%" }}
+              initial={{ x: "-100%" }}
               animate={{ x: 0 }}
-              exit={{ x: reduce ? 0 : "-100%" }}
+              exit={{ x: "-100%" }}
               transition={{ duration: 0.22, ease: "easeOut" }}
               className="fixed inset-y-0 left-0 z-50 w-[280px] max-w-[82vw] overflow-y-auto border-r border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-5 lg:hidden"
               aria-label="Docs navigation drawer"
@@ -87,6 +103,7 @@ export function DocsShell({ children }: { children: ReactNode }) {
                   Documentation
                 </span>
                 <button
+                  ref={closeButtonRef}
                   type="button"
                   onClick={() => setDrawerOpen(false)}
                   aria-label="Close docs navigation"
@@ -115,7 +132,7 @@ export function DocsShell({ children }: { children: ReactNode }) {
           <main className="min-w-0 py-10 lg:py-12">
             <motion.article
               key={pathname}
-              initial={reduce ? false : { opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="mx-auto max-w-[720px]"

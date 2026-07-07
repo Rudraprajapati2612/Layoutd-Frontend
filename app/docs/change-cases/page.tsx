@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("change-cases");
+
 import { H2, P, C, A, Strong } from "@/components/docs/Prose";
 import { Verdict } from "@/components/docs/Verdict";
 import { Callout } from "@/components/docs/Callout";
@@ -36,7 +40,7 @@ const CASES: Case[] = [
       <>
         A rename is <Verdict kind="safe" /> only when a field disappears and a new
         one appears at the <Strong>same position with the same type and size</Strong>
-        . If the type or size differs, the tool can&apos;t distinguish a rename from
+        . If the type or size differs, the tool can’t distinguish a rename from
         a remove-plus-add, so it treats it as <Verdict kind="danger" /> rather than
         guess. Confirm true renames in the optional hint file.
       </>
@@ -64,7 +68,7 @@ const CASES: Case[] = [
     body: (
       <>
         Removing a field is <Verdict kind="danger" />. It has two failure modes:
-        the field&apos;s value is lost permanently, and every field after it shifts
+        the field’s value is lost permanently, and every field after it shifts
         offset. <C>check</C> fails by default; with an explicit acknowledgement,
         <C>gen</C> still scaffolds the mechanical work and marks the human decision.
         The safe escape hatch is to keep the field and mark it deprecated.
@@ -79,7 +83,7 @@ const CASES: Case[] = [
       <>
         Reordering the same fields is <Verdict kind="safe" /> under Borsh, because
         fields are matched by <Strong>name</Strong> on re-serialization — order
-        doesn&apos;t change the bytes. In zero-copy it&apos;s <Verdict kind="review" />{" "}
+        doesn’t change the bytes. In zero-copy it’s <Verdict kind="review" />{" "}
         (and escalates to <Verdict kind="danger" /> if alignment breaks), because
         order controls real offsets, padding, and total size.
       </>
@@ -122,9 +126,9 @@ export default function ChangeCasesPage() {
       <div className="mt-12" />
       <H2>Why this matters</H2>
       <P>
-        Knowing your intent isn&apos;t the same as knowing the byte-level
-        consequences. layoutd turns a private &ldquo;I widened this&rdquo; into a
-        checked, recorded artifact — and catches the change you didn&apos;t realise
+        Knowing your intent isn’t the same as knowing the byte-level
+        consequences. layoutd turns a private “I widened this” into a
+        checked, recorded artifact — and catches the change you didn’t realise
         you made.
       </P>
 

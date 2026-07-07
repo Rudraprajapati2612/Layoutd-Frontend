@@ -1,3 +1,7 @@
+import { metadataFor } from "@/components/docs/docs-nav";
+
+export const metadata = metadataFor("faq");
+
 import { H3, P, C, A, Strong } from "@/components/docs/Prose";
 
 export default function FaqPage() {
@@ -14,17 +18,17 @@ export default function FaqPage() {
 
       <H3>Does it loop over all my accounts?</H3>
       <P>
-        No. Solana has no &ldquo;update all rows&rdquo; operation. Migration is{" "}
+        No. Solana has no “update all rows” operation. Migration is{" "}
         <Strong>lazy and per-account</Strong>: each account migrates individually,
         on first access by the new program version, paid for by whoever signs that
         transaction. An account never touched again is never migrated, harmlessly.
-        layoutd&apos;s only job is producing the correct migration logic.
+        layoutd’s only job is producing the correct migration logic.
       </P>
 
       <H3>What if my real binary classifies a change differently?</H3>
       <P>
         Your installed binary is the ground truth. The output shown in these docs
-        reproduces the on-screen example and follows the spec&apos;s classifier
+        reproduces the on-screen example and follows the spec’s classifier
         rules, but you should re-run the CLI on your own account versions to confirm
         the exact verdicts. When in doubt, trust the binary over the docs.
       </P>
@@ -36,7 +40,7 @@ export default function FaqPage() {
         See <A href="/docs/borsh-vs-zero-copy">Borsh vs Zero-Copy</A>.
       </P>
 
-      <H3>How do I ship a change that&apos;s intentionally dangerous?</H3>
+      <H3>How do I ship a change that’s intentionally dangerous?</H3>
       <P>
         Acknowledge it. Name the exact change in the <C>--ack</C> file so{" "}
         <C>check</C> passes only that danger. The decision is recorded in your
